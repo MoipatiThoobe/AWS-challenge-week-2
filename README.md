@@ -3,7 +3,7 @@ Week 2 of the 12 weeks of AWS challenge
 
 The second week of this challenge focused of AWS IAM. AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. You use IAM to control who is **authenticated** (signed in) and who is **authorized** (has permissions) to use resources. With IAM, you define who can access what by specifying fine-grained permissions, IAM then enforces those permissions for every request. 
 
-## IAM Users Hands On Lab
+## IAM Users
 
 An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS, a user in AWS consists of a name and credentials. There are 2 types of users in AWS, **account owner (root user)** or an **AWS Identity and Access Management (IAM) user. The root user is created when the AWS account is created and IAM users are created by the root user or IAM administrator for the account. All AWS users have security credentials. 
 
@@ -72,3 +72,78 @@ A screenshot showing the deletion of the user group
 
 <img width="953" alt="8" src="https://github.com/user-attachments/assets/258c9abe-6a15-44fa-845f-2cc58fed5fe1" />
 
+## IAM Roles
+
+An IAM Role is similar to a user, in that it is an AWs identity with permission policies that determine what the identity can and cannot do in AWS. A role does not have any credentials (password or access keys) with it, that is how it is different from IAM Users. Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. An IAM role user can assume a role to temporarily takes on different permissions for a specific task. 
+
+The hands on labs are seperated into the following sections:
+1. Creating an IAM role
+2. IAM Service Role
+3. IAM Service Linked role
+
+### Creating an IAM role hands on lab
+
+Screenshots showing the successful creation of a new IAM role
+
+<img width="956" alt="1" src="https://github.com/user-attachments/assets/17ace6f0-ed52-4f6e-8cc8-30a883434e05" />
+
+<img width="957" alt="2" src="https://github.com/user-attachments/assets/00c4bf39-99ec-4c14-84c1-9b8147dc7dae" />
+
+### IAM Service Roles hands on lab
+
+Creating a new S3 bucket
+
+<img width="946" alt="3" src="https://github.com/user-attachments/assets/c37cdbd8-adc9-4a11-81f6-2b7753461e51" />
+
+Creating an AWS Policy that allows reading (List) access to  S3 bucket
+
+<img width="958" alt="4" src="https://github.com/user-attachments/assets/5250707b-c655-4f65-a56b-e0f8104d3f46" />
+
+Creating an AWS Service role that allows Lambda to access the S3 bucket
+
+<img width="950" alt="5" src="https://github.com/user-attachments/assets/a81e6dea-6735-45ff-bddd-143d92b910d7" />
+
+Creating a new Lambda function
+
+<img width="955" alt="6" src="https://github.com/user-attachments/assets/a38e2ad0-88f4-440e-866e-43318a37a1e4" />
+
+Updating the Lambda function code
+
+<img width="952" alt="7" src="https://github.com/user-attachments/assets/ef1ad152-44b1-4e58-b096-db54512a00a3" />
+
+Creating a new test event for the function code
+
+<img width="955" alt="8" src="https://github.com/user-attachments/assets/abdf6f77-a2d0-413a-afe5-b49bf023f61b" />
+
+The execution of the Lambda function failed because Lambda does not have the required permissions to put an object into the S3 bucket
+
+<img width="956" alt="9" src="https://github.com/user-attachments/assets/3617428a-7100-4833-9179-2d1b719b294a" />
+
+To fix the error shown above, the Policy had to be updated to allow the Lambda function to put an object into the bucket
+
+<img width="959" alt="10" src="https://github.com/user-attachments/assets/5346461d-0c21-45b0-b3d1-59c49ceef783" />
+
+The execution of the Lambda function is now successful
+
+<img width="954" alt="11" src="https://github.com/user-attachments/assets/1eff0049-a4c2-4bbb-aec9-66a15e96946f" />
+
+A text file was successfully added to the S3 bucket using the Lambda function
+
+<img width="957" alt="12" src="https://github.com/user-attachments/assets/4d5ad87a-0368-45ff-97ed-557c7e5825e8" />
+
+
+### IAM Service linked role
+
+A service-linked role is a unique type of IAM role that is linked directly to an AWS service. Service-linked roles are predefined by the service and include all the permissions that the service requires to call other AWs services on your behalf. Service-linked roles make setting up a service easier because you don't have to manually add the necessary permissions for the service to complete actions on your behalf. 
+
+Create a target group for the load balancer
+
+<img width="956" alt="1" src="https://github.com/user-attachments/assets/9c42ee82-d3c7-4598-a45c-42c557c20034" />
+
+Create an application load balancer 
+
+<img width="955" alt="2" src="https://github.com/user-attachments/assets/38dd2761-88f6-4e6e-a0a7-1d9b47817d5f" />
+
+A new service linked role is created for the load balancer
+
+<img width="959" alt="3" src="https://github.com/user-attachments/assets/5a77ef95-9934-464a-9309-45e046b940d1" />
