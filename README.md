@@ -147,3 +147,46 @@ Create an application load balancer
 A new service linked role is created for the load balancer
 
 <img width="959" alt="3" src="https://github.com/user-attachments/assets/5a77ef95-9934-464a-9309-45e046b940d1" />
+
+
+## IAM Policies
+
+A policy is an object in AWS that, when associated with an identity or resource, defines their permissions. You manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users or roles) or AWs resources. AWS evaluates these policies when an IAM principal (user or role) makes a request. Permissions in the policies determine whether the request is allowed or denied. Most policies are stored in AWS as JSON documents. 
+
+### Creating a custom policy hands on lab
+In the hands on lab, we are going to create an AWS Identity policy to access to S3. We will then use the policy to test our access in our new account.
+
+Specify the permissions of the policy, the policy gives the user "List" and "Read" permissions for S3 resources
+
+<img width="956" alt="1" src="https://github.com/user-attachments/assets/fba855cb-9a11-4594-8af4-9aacc41b3f3a" />
+
+Create the policy
+
+<img width="953" alt="3" src="https://github.com/user-attachments/assets/d772f867-d48d-4420-8553-b0ab88b1ef3b" />
+
+Create a new s3 bucket
+
+<img width="951" alt="4" src="https://github.com/user-attachments/assets/cfe0bb5a-abc4-40b4-962d-5f7e2d09751b" />
+
+Create a new text file named "test" and upload the file into the S3 bucket
+
+<img width="958" alt="5" src="https://github.com/user-attachments/assets/11c8db0c-e1bc-42d8-89aa-5d14692007b0" />
+
+Create a new IAM user and attach the policy that we previously created to the user
+
+<img width="953" alt="6" src="https://github.com/user-attachments/assets/46f16330-f960-48a7-9920-9108fb1a7b49" />
+
+Open an incognito tab/window and sign into the AWS management console using the credentials of the new user
+
+<img width="950" alt="7" src="https://github.com/user-attachments/assets/98c0a413-288e-41c2-b3e1-1b561e887e78" />
+
+Because of the policy the IAM user is able to access the S3 bucket and download its objects
+
+<img width="955" alt="9" src="https://github.com/user-attachments/assets/89876698-ef48-4b54-900a-3960c0d3192f" />
+
+An error occurred when trying to delete the object because the IAM user does not have permissions to delete S3 objects
+
+<img width="956" alt="10" src="https://github.com/user-attachments/assets/b85c6fac-c69b-4af4-972f-f97b98e99f83" />
+
+
+
