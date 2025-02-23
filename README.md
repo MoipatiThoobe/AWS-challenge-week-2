@@ -1,4 +1,4 @@
-# AWS-challenge-week-2
+<img width="948" alt="1" src="https://github.com/user-attachments/assets/79838c6e-0d6a-42b7-8d88-fa032fee4c03" /># AWS-challenge-week-2
 Week 2 of the 12 weeks of AWS challenge
 
 The second week of this challenge focused of AWS IAM. AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. You use IAM to control who is **authenticated** (signed in) and who is **authorized** (has permissions) to use resources. With IAM, you define who can access what by specifying fine-grained permissions, IAM then enforces those permissions for every request. 
@@ -246,8 +246,141 @@ In the hands on lab, I will do the following:
 
 As there are no credentials associated with IAM roles, there is no risk of anyone taking the credentials and accessing your resources. For this reason, delegating roles is considered best practice for providing access to AWS resources. 
 
+In this hands on lab, I will be doing the following: 
+* Launch an EC2 Instance
+* Attach an IAM role to instance
+* Connect to the instance and list the S3 buckets in my account
+
+1. Launch an EC2 instance
+
+<img width="948" alt="1" src="https://github.com/user-attachments/assets/8f3722ba-643e-4fd3-abdc-311b20b32c53" />
+
+2. Connect to the EC2 instance using EC2 Instance connect
+
+<img width="956" alt="2" src="https://github.com/user-attachments/assets/728f3ea7-fc87-48ad-8b0c-4596495eabc2" />
+
+3. Attempt to list the buckets using a command. The command is going to fail because the command line is not configured with the correct credentials to access my account: aws s3 ls --region us-east-1
+
+<img width="602" alt="3" src="https://github.com/user-attachments/assets/64c5fb16-0794-458d-b7cd-5af52da2935e" />
+
+4. Create an IAM role with access to S3 using the custom policy that was created in a previous lab
+
+<img width="951" alt="4" src="https://github.com/user-attachments/assets/28913c6e-f90b-4030-98bf-acdc37451314" />
+
+5. Modify the IAM role of the EC2 instance and attach the new role that was just created
+
+<img width="958" alt="5" src="https://github.com/user-attachments/assets/63e2a2ba-47e6-4812-abec-3d16317a3b40" />
+
+6. Connect to the instance again and use the command that we tried earlier. This time the command will work because we have attached an IAM role with the correct permissions.
+
+<img width="566" alt="6" src="https://github.com/user-attachments/assets/d0bb14f6-7317-4cfd-a589-6aa26d8cc9ac" />
 
 
+## IAM policies in Multiple accounts
+
+The functionality of IAM can be leveraged in a multi-account environement as well. 
 
 
+### IAM identity center
 
+IAM identity center is the successor to AWS single sign on (SSO). The service helps you centrally manage access to multiple AWs accounts and applications. IAM identity center is the recommended approach that organization of all sizes and types can use to authenticate and authorize their workforce within AWS. 
+
+In this hands on lab, I will do the following:
+* Create an IAM identity center and AWS organisation
+* Create an IAM identity center User and a new AWS account
+* Associate an IAM idenity center with AWS accounts
+
+1. Create an IAM identity center
+
+<img width="953" alt="1" src="https://github.com/user-attachments/assets/064fae13-1c2f-410c-af4b-cfd73159581e" />
+
+2. Add a user to the IAM identity center
+
+<img width="955" alt="2" src="https://github.com/user-attachments/assets/d738d14e-9920-469d-8e1f-ade836da994b" />
+
+3. Accept the invitation to join the IAM identity center
+
+<img width="587" alt="3" src="https://github.com/user-attachments/assets/cf1ac02d-3823-4163-846d-0c83314f2cee" />
+
+4. Create a virtual MFA for the new user
+
+<img width="518" alt="4" src="https://github.com/user-attachments/assets/29c0a46e-82c0-48b9-8d01-7bcaf4e04546" />
+
+5. Login to the AWs access portal using the credentials of the new user. The AWS access portal exists seperately from the AWS management console
+
+<img width="955" alt="5" src="https://github.com/user-attachments/assets/ead6b425-a56a-440f-b54d-d3a32cf9beed" />
+
+6. Create a permission set with full access to Amazon S3. Permission sets define the level of access an IAM identity Center User has to its assigned AWs accounts.
+
+<img width="959" alt="6" src="https://github.com/user-attachments/assets/0ff074a6-1abb-4f9a-8fec-511c75f97ac8" />
+
+7. Create a new AWS account within the organisation
+
+<img width="956" alt="7" src="https://github.com/user-attachments/assets/bf0d3db0-c9ae-40bb-bdcf-bba0e7afcd1c" />
+
+<img width="958" alt="8" src="https://github.com/user-attachments/assets/b2a86ed4-c895-4490-9a8e-2942d8b4a790" />
+
+8. Associate IAM identity center users with AWS accounts
+
+<img width="958" alt="9" src="https://github.com/user-attachments/assets/9648d6e2-a1e0-4471-90bc-392bb5343eaa" />
+
+9. Access the AWS access portal and check whether the permission set has been applied
+
+<img width="950" alt="10" src="https://github.com/user-attachments/assets/6b760619-ed5a-47cf-b7be-2925d6f84220" />
+
+10. There are errors when we go to the EC2 service page because we do not have permissions to use this service
+
+<img width="957" alt="11" src="https://github.com/user-attachments/assets/ada20954-185f-404f-812c-6971ee707bb8" />
+
+11. Successfully created a S3 bucket because we have the relevant permissions through the permission set
+
+<img width="951" alt="12" src="https://github.com/user-attachments/assets/131085dc-337d-4dea-91f0-4f6b022d3c9c" />
+
+### Service control policy
+
+A service control policy (SCP) is a policy which helps you centrally manage the permissions available in an Organisation's Account. Using SCPs allows Accounts to adhere to an Organisation's Access control guidlines. SCPs can be applied in units of OUs in AWS Organisation or units in AWS accounts. 
+
+In this hands on lab, I will do the following:
+* Enable Service control policy
+* Create a service control policy that prevents the creation of S3 buckets
+* Apply the service control policy to an AWS account
+
+1. Enable Service control policy for the Organisation, the default configuration is disabled
+
+<img width="949" alt="13" src="https://github.com/user-attachments/assets/50c5c732-6dd9-4446-81ab-e26b62e85542" />
+
+2. Create a Service control policy that prevents a user from creating a new S3 bucket. The policy code is stored in a file called PreventS3Create.json.
+
+<img width="959" alt="14" src="https://github.com/user-attachments/assets/5610e595-d5e5-4c09-b772-93e42d7d8ac2" />
+
+3. Attach the SCP to the member account that was previously created
+
+<img width="956" alt="15" src="https://github.com/user-attachments/assets/165c04c8-c836-49ff-a658-60e4d10d895f" />
+
+4. When we try to create a new bucket, we will get an error. This indicates that the SCP has been correctly applied to the account.
+
+<img width="930" alt="16" src="https://github.com/user-attachments/assets/7b0b635c-0a31-43d2-8fde-ccae6c2c0b94" />
+
+
+### IAM Access Analyzer 
+
+IAM Access Analyzer helps you identify the resources in your organisation and accounts, such as S3 buckets, that are shared with an external entity. This functionality allows users to identify unintended access to our resources and data. 
+
+In this hands on lab, I will do the following:
+* Set up and use IAM Access Analyzer
+
+1. Create an analyzer with IAM Access Analyzer
+
+<img width="959" alt="1" src="https://github.com/user-attachments/assets/e4586d2b-a64c-4f22-9754-c09bbb6a799a" />
+
+2. Create an IAM role that can be accessed from an external account
+
+<img width="955" alt="2" src="https://github.com/user-attachments/assets/243fdf13-166b-401d-9b8c-0fae1d599364" />
+
+3. A resource accessible outside the zone of trust is detected in the IAM Access Analyzer
+
+<img width="956" alt="3" src="https://github.com/user-attachments/assets/9860ec72-49c6-4d4b-83c9-416dea202cbf" />
+
+4. We can choose to Archive the finding to remove it from the active findings. If the access is not intended, we can modify the role. 
+
+<img width="949" alt="4" src="https://github.com/user-attachments/assets/494e4465-c9f1-454c-8217-9b53c487a982" />
