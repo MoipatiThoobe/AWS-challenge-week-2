@@ -192,7 +192,7 @@ In the hands on lab, we are going to create an AWS Identity policy to access to 
 
 Programmatic access is used when service applications and operational tools require non-human access in order to make requests to AWS services. There are twp ways to grant access to AWS resources:
 * IAM User Access keys
-* Delegating IAM rules
+* Delegating IAM roles
 
 ### IAM User Access keys
 Access keys are a type of IAM User credential consisting of an Access Key ID and a Secret access key. These keys can be used to together for programmatic access to AWS resources. Command line scripts and applications that access AWS can use these credentials without any need for a human user. 
