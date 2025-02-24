@@ -7,11 +7,11 @@ The second week of this challenge focused of AWS IAM. AWS Identity and Access Ma
 
 An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS, a user in AWS consists of a name and credentials. There are 2 types of users in AWS, **account owner (root user)** or an **AWS Identity and Access Management (IAM) user. The root user is created when the AWS account is created and IAM users are created by the root user or IAM administrator for the account. All AWS users have security credentials. 
 
-In the Hands On lab, I did the following: 
-* Created an IAM user
-* Created a password for the user
-* Attached permissions to the IAM user that gave them administrator privileges
-* Used Multi factor authentication to secure the user
+In the Hands On lab, I will do the following: 
+* Create an IAM user
+* Create a password for the user
+* Attach permissions to the IAM user that gave them administrator privileges
+* Use Multi factor authentication to secure the user
 
 1. Create of the Administrator user
 
@@ -39,10 +39,10 @@ An IAM user group is a collection of IAM users. User groups let you specify perm
 * User groups cannot contain other user groups
 * There is no default user group that automatically includes all users in the AWS account. If you want to have a user group like that, you must create it and assign each new user to it
 
-In the Hands on lab, I did the following:
-* Created a new user with no permissions called PowerUser
-* Created a new user group called Developers and attached permissions to the user group
-* Added PowerUser user to the Developers group. Doing this granted them permissions to manage EC2 Server resources.
+In the Hands on lab, I will do following:
+* Create a new user with no permissions called PowerUser
+* Create a new user group called Developers and attached permissions to the user group
+* Add PowerUser user to the Developers group. Doing this will grant them permissions to manage EC2 Server resources.
 
 1. Create a new user
 
@@ -76,7 +76,7 @@ In the Hands on lab, I did the following:
 
 An IAM Role is similar to a user, in that it is an AWs identity with permission policies that determine what the identity can and cannot do in AWS. A role does not have any credentials (password or access keys) with it, that is how it is different from IAM Users. Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. An IAM role user can assume a role to temporarily takes on different permissions for a specific task. 
 
-The hands on labs are seperated into the following sections:
+The hands on labs are separated into the following sections:
 1. Creating an IAM role
 2. IAM Service Role
 3. IAM Service Linked role
@@ -217,7 +217,7 @@ In the hands on lab, I will do the following:
 
 <img width="720" alt="4" src="https://github.com/user-attachments/assets/c5d108ee-a338-4474-a085-e9e6c0270ab1" />
 
-5. Verfiy that the credentials have been properly imported by running a command to list all profiles: aws configure list-profiles
+5. Verify that the credentials have been properly imported by running a command to list all profiles: aws configure list-profiles
 
 <img width="513" alt="5" src="https://github.com/user-attachments/assets/01a7fd3d-c7b6-450c-b734-0e866398c024" />
 
@@ -278,17 +278,16 @@ In this hands on lab, I will be doing the following:
 
 ## IAM policies in Multiple accounts
 
-The functionality of IAM can be leveraged in a multi-account environement as well. 
-
+The functionality of IAM can be leveraged in a multi-account environment as well. 
 
 ### IAM identity center
 
 IAM identity center is the successor to AWS single sign on (SSO). The service helps you centrally manage access to multiple AWs accounts and applications. IAM identity center is the recommended approach that organization of all sizes and types can use to authenticate and authorize their workforce within AWS. 
 
 In this hands on lab, I will do the following:
-* Create an IAM identity center and AWS organisation
+* Create an IAM identity center and AWS organization
 * Create an IAM identity center User and a new AWS account
-* Associate an IAM idenity center with AWS accounts
+* Associate an IAM identity center with AWS accounts
 
 1. Create an IAM identity center
 
@@ -306,7 +305,7 @@ In this hands on lab, I will do the following:
 
 <img width="518" alt="4" src="https://github.com/user-attachments/assets/29c0a46e-82c0-48b9-8d01-7bcaf4e04546" />
 
-5. Login to the AWs access portal using the credentials of the new user. The AWS access portal exists seperately from the AWS management console
+5. Login to the AWs access portal using the credentials of the new user. The AWS access portal exists separately from the AWS management console
 
 <img width="955" alt="5" src="https://github.com/user-attachments/assets/ead6b425-a56a-440f-b54d-d3a32cf9beed" />
 
@@ -314,7 +313,7 @@ In this hands on lab, I will do the following:
 
 <img width="959" alt="6" src="https://github.com/user-attachments/assets/0ff074a6-1abb-4f9a-8fec-511c75f97ac8" />
 
-7. Create a new AWS account within the organisation
+7. Create a new AWS account within the organization
 
 <img width="956" alt="7" src="https://github.com/user-attachments/assets/bf0d3db0-c9ae-40bb-bdcf-bba0e7afcd1c" />
 
@@ -338,14 +337,14 @@ In this hands on lab, I will do the following:
 
 ### Service control policy
 
-A service control policy (SCP) is a policy which helps you centrally manage the permissions available in an Organisation's Account. Using SCPs allows Accounts to adhere to an Organisation's Access control guidlines. SCPs can be applied in units of OUs in AWS Organisation or units in AWS accounts. 
+A service control policy (SCP) is a policy which helps you centrally manage the permissions available in an Organization's Account. Using SCPs allows Accounts to adhere to an Organization's Access control guidelines. SCPs can be applied in units of OUs in AWS Organization or units in AWS accounts. 
 
 In this hands on lab, I will do the following:
 * Enable Service control policy
 * Create a service control policy that prevents the creation of S3 buckets
 * Apply the service control policy to an AWS account
 
-1. Enable Service control policy for the Organisation, the default configuration is disabled
+1. Enable Service control policy for the Organization, the default configuration is disabled
 
 <img width="949" alt="13" src="https://github.com/user-attachments/assets/50c5c732-6dd9-4446-81ab-e26b62e85542" />
 
@@ -364,10 +363,10 @@ In this hands on lab, I will do the following:
 
 ### IAM Access Analyzer 
 
-IAM Access Analyzer helps you identify the resources in your organisation and accounts, such as S3 buckets, that are shared with an external entity. This functionality allows users to identify unintended access to our resources and data. 
+IAM Access Analyzer helps you identify the resources in your organization and accounts, such as S3 buckets, that are shared with an external entity. This functionality allows users to identify unintended access to our resources and data. 
 
 In this hands on lab, I will do the following:
-* Set up and use IAM Access Analyzer
+* Set up and used IAM Access Analyzer
 
 1. Create an analyzer with IAM Access Analyzer
 
