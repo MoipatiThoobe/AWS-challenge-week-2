@@ -1,4 +1,4 @@
-<img width="948" alt="1" src="https://github.com/user-attachments/assets/79838c6e-0d6a-42b7-8d88-fa032fee4c03" /># AWS-challenge-week-2
+# AWS-challenge-week-2
 Week 2 of the 12 weeks of AWS challenge
 
 The second week of this challenge focused of AWS IAM. AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. You use IAM to control who is **authenticated** (signed in) and who is **authorized** (has permissions) to use resources. With IAM, you define who can access what by specifying fine-grained permissions, IAM then enforces those permissions for every request. 
